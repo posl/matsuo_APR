@@ -3,4 +3,5 @@ compiler:       # clangとgccの両方でテストするよう設定
   - clang
   - gcc
 script:         # テストの内容
+    cd trial/ctest /
     make && make test
