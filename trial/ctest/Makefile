@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -std=c99
 TARGET = fib
 
-$(TARGET): src/main.c
+$(TARGET): main.c
     $(CC) $(CFLAGS) $^ -o $(@)
 
 test: $(TARGET)
