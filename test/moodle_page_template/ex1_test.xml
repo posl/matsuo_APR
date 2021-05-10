@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+      <text>$course$/top/2020年度夏学期・月1月2・プログラミング演習Ⅰ（B）（亀井　靖高） のデフォルト/演習課題1の小テスト</text>
+    </category>
+    <info format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;">演習課題1に対する小テストの集合です</p>]]></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+
+<!-- question: 9627  -->
+  <question type="coderunner">
+    <name>
+      <text>02-Variable.pdfの課題2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;">02-Variable.pdfのスライド19枚目にあるプログラムを正しく動作するように修正せよ．</p><p dir="ltr" style="text-align: left;">期待される出力の形式などはex-02-2.pdfを確認すること．</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_program</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 0, 0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[#include <stdio.h>
+
+int main(void)
+{
+    int i;
+    float j;
+    unsigned int u;
+    float f;
+    
+    i = 077;
+    j = 3.14;
+    u = -255;
+    f = 10;
+    
+    printf("i = %o\n", i);
+    printf("j = %1.2f\n", j);
+    printf("u = %d\n", u);
+    printf("f = %2.1f\n", f);
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <testcases>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>02-2-test1</text>
+      </testcode>
+      <stdin>
+                <text></text>
+      </stdin>
+      <expected>
+                <text>i = 77
+j = 3.14
+u = -255
+f = 10.0
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+<!-- question: 9628  -->
+  <question type="coderunner">
+    <name>
+      <text>03-Function_If.pdfの課題4</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;">03-Function_If.pdfの課題4を読んで，摂氏から華氏に変換するプログラムを作成せよ．<br></p><p dir="ltr" style="text-align: left;"></p><p dir="ltr">必ずconvC2Fという関数を作成し，関数の中で変換の計算を行うようにすること．</p><p dir="ltr">入力の形式や期待される出力の形式などはex-03-4.pdfを確認すること．<br></p><br><p></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_program</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>0, 0, 0, 0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[#include <stdio.h>
+float convC2F(float C)
+{
+    float F;
+    F=(1.8*C)+32.0;
+    return F;
+}
+int main()
+{
+    float C,F;
+    scanf("%f",&C);
+    F=convC2F(C);
+    printf("%f\n",F);
+    return 0;
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <testcases>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-4-test1</text>
+      </testcode>
+      <stdin>
+                <text>10</text>
+      </stdin>
+      <expected>
+                <text>50.000000
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-4-test2</text>
+      </testcode>
+      <stdin>
+                <text>27.3</text>
+      </stdin>
+      <expected>
+                <text>81.139999
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-4-test3</text>
+      </testcode>
+      <stdin>
+                <text>0</text>
+      </stdin>
+      <expected>
+                <text>32.000000
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-4-test4</text>
+      </testcode>
+      <stdin>
+                <text>-10</text>
+      </stdin>
+      <expected>
+                <text>14.000000
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-4-test5</text>
+      </testcode>
+      <stdin>
+                <text>-15.4</text>
+      </stdin>
+      <expected>
+                <text>4.280001
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+<!-- question: 9629  -->
+  <question type="coderunner">
+    <name>
+      <text>03-Function_If.pdfの課題6</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;">03-Function_If.pdfの課題6を読んで，2次方程式の解を求めるプログラムを作成せよ．<br></p><p dir="ltr" style="text-align: left;">ただし，a≠0の場合は考えなくても良い．</p><p dir="ltr" style="text-align: left;">入力の形式や期待される出力の形式などはex-03-4.pdfを確認すること．<br></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_program</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>0, 0, 0, 0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    float a, b, c, d;
+    float x1, x2, e1, e2, i;
+    scanf("%f %f %f", &a, &b, &c);  // a,b,cに値を代入
+    d = (b * b) - (4 * a * c);  // 判別式
+    e1 = pow(d,1.0/2.0);  // d>0の時の平方根
+    e2 = pow(-d,1.0/2.0);  //  d<0の時の平方根
+    if(d < 0){
+        x1 = (float)(-b) / (float)(2 * a);  // 実数部
+        i = e2 / (2 * a);  // 虚数部
+        printf("%f+%fi\n", x1, i);
+        printf("%f-%fi\n", x1, i);
+    }
+    else if(d == 0){
+        x1 = (float)(-b + e1) / (float)(2 * a);  // 重解
+        printf("%f\n", x1);
+    }
+    else{
+        x1 = (float)(-b + e1) / (float)(2 * a);
+        x2 = (float)(-b - e1) / (float)(2 * a);
+        printf("%f\n", x1);
+        printf("%f\n", x2);
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams><![CDATA[{"linkargs":["-lm"]}]]></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <testcases>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-6-test1</text>
+      </testcode>
+      <stdin>
+                <text>1
+5
+6</text>
+      </stdin>
+      <expected>
+                <text>-2.000000
+-3.000000
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-6-test2</text>
+      </testcode>
+      <stdin>
+                <text>1
+-2
+1</text>
+      </stdin>
+      <expected>
+                <text>1.000000
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-6-test3</text>
+      </testcode>
+      <stdin>
+                <text>1
+-1
+1</text>
+      </stdin>
+      <expected>
+                <text>0.500000+0.866025i
+0.500000-0.866025i
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-6-test4</text>
+      </testcode>
+      <stdin>
+                <text>1
+0.5
+-0.5</text>
+      </stdin>
+      <expected>
+                <text>0.500000
+-1.000000
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>03-6-test5</text>
+      </testcode>
+      <stdin>
+                <text>3
+-9
+-12</text>
+      </stdin>
+      <expected>
+                <text>4.000000
+-1.000000
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+</quiz>

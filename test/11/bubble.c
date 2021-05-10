@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<math.h>
 
-/* f(x) */
 void bubble(int a[],int left,int right){
     int i, j, tmp;
     for(i = left; i < right - 1; i++){
