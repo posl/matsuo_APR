@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+      <text>$course$/top/2020年度夏学期・月1月2・プログラミング演習Ⅰ（B）（亀井　靖高） のデフォルト/レポート1の小テスト</text>
+    </category>
+    <info format="html">
+      <text></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+
+<!-- question: 9642  -->
+  <question type="coderunner">
+    <name>
+      <text>08-Newton.pdfの課題14</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;"></p><div><div>08-Newton.pdfのスライド37ページを参考に，ニュートン法で2次方程式の解の1つを求めるプログラムを作成しなさい．</div></div><br><p></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_program</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>0</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[#include <stdio.h>
+#include <math.h>
+
+/*f(x)*/
+double f(double x,double a,double b,double c)
+{
+    return a * pow(x,2) + b * x + c;
+}
+
+/*f(x)の導関数*/
+double g(double x,double a,double b)
+{
+    return 2 * a * x + b;
+}
+
+int main()
+{
+    //利用する変数
+    double x, new_x, eps;
+    int number,i;
+    double a,b,c;
+
+    //fxの取り込み
+    //printf("a : ");
+    scanf("%lf",&a);
+    //printf("b : ");
+    scanf("%lf",&b);
+    //printf("c : ");
+    scanf("%lf",&c);
+
+    //データの取り込み
+    //printf("初期値 : ");
+    scanf("%lf",&x);
+    //printf("計算精度 : ");
+    scanf("%lf",&eps);
+    //printf("繰り返し上限回数 : ");
+    scanf("%d",&number);
+    //printf("繰り返し\tnew x\t\tf(x)\t\tg(x)\n");
+    
+    /* ニュートン法による解の導出 */
+    for(i=0;i<number;i++){
+        new_x = x - f(x,a,b,c) / g(x,a,b);
+        /* 収束条件で判定し、解を出力 */
+        if(fabs(new_x - x) < eps && (g(x,a,b) > 0.0001)){
+            printf("%f\n", new_x);
+            break;
+        }
+
+        //printf("%2d\t\t%f\t%f\t%f\n", i, new_x, f(x,a,b,c), g(x,a,b));
+
+         /* 収束条件、重解の判定をし、重解を出力 */
+        if((fabs(new_x - x) < eps) && (g(x,a,b) <= 0.0001)){
+            printf("%f(重解)\n", new_x);
+            break;
+        }
+        x = new_x;
+    }
+    if(i == number) printf("繰り返し上限\n");
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams><![CDATA[{"linkargs":["-lm"]}]]></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <testcases>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>08-14-test1</text>
+      </testcode>
+      <stdin>
+                <text>1
+2
+1
+10
+0.000001
+100</text>
+      </stdin>
+      <expected>
+                <text>-0.999999(重解)</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>08-14-test2</text>
+      </testcode>
+      <stdin>
+                <text>1
+2
+1
+-10
+0.000001
+100</text>
+      </stdin>
+      <expected>
+                <text>-1.000001(重解)</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>08-14-test3</text>
+      </testcode>
+      <stdin>
+                <text>2
+-2
+-12
+5
+0.000001
+100</text>
+      </stdin>
+      <expected>
+                <text>3.000000</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>08-14-test4</text>
+      </testcode>
+      <stdin>
+                <text>1
+-0.3
+-0.1
+10
+0.000001
+10</text>
+      </stdin>
+      <expected>
+                <text>0.500000</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>08-14-test5</text>
+      </testcode>
+      <stdin>
+                <text>1
+-0.3
+-0.1
+100
+0.000001
+10</text>
+      </stdin>
+      <expected>
+                <text>繰り返し上限</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+<!-- question: 9643  -->
+  <question type="coderunner">
+    <name>
+      <text>09-Integration.pdfの課題14</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;"><div><div>09-Integration.pdfを参考に台形則による近似で関数の数値積分を行うプログラムを作成してください．</div></div><br></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_program</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[#include<stdio.h>
+#include<math.h>
+
+/* f(x) */
+double f(double x)
+{
+    return exp(-x*x);
+}
+
+int main()
+{
+    double a, b, x, h, sum = 0.0;
+    int n, i;
+
+    //積分区間
+    scanf("%lf %lf", &a, &b);
+    //分割数
+    scanf("%d", &n);
+
+    // 台形の面積の計算
+    h = (b-a)/n;
+    for (i=0; i<n; i++) {	
+        x = a + (double)i*h;
+        sum += (h/2)*(f(x) + f(x+h));
+    }
+
+    printf("%f\n",sum);
+
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams><![CDATA[{"linkargs":["-lm"]}]]></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <testcases>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>09-16-test1</text>
+      </testcode>
+      <stdin>
+                <text>0
+1
+10000</text>
+      </stdin>
+      <expected>
+                <text>0.746824</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>09-16-test2</text>
+      </testcode>
+      <stdin>
+                <text>0
+1
+10</text>
+      </stdin>
+      <expected>
+                <text>0.746211</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>09-16-test3</text>
+      </testcode>
+      <stdin>
+                <text>-1
+1
+10000</text>
+      </stdin>
+      <expected>
+                <text>1.493648</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>09-16-test4</text>
+      </testcode>
+      <stdin>
+                <text>1
+-1
+10000</text>
+      </stdin>
+      <expected>
+                <text>-1.493648</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>09-16-test5</text>
+      </testcode>
+      <stdin>
+                <text>0.000135
+1.000135
+10000</text>
+      </stdin>
+      <expected>
+                <text>0.746739</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+</quiz>
