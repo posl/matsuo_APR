@@ -24,6 +24,6 @@ int main()
         sum += (h/2)*(f(x) + f(x+h));
     }
 
-    printf("%lf\n",sum);
+    printf("%f\n",sum);
 
 }
