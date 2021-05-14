@@ -30,11 +30,13 @@ int main(){
     }
 
     //入力行列の出力(ピボッティングでa行列を操作するため事前に出力)
+    /*
     printf("入力行列\n");
     for(i=0;i<M;i++){
         for(j=0;j<M;j++) printf("%10.5lf",a[i][j]);
         printf("%10.5lf\n",b[i]);
     }
+    */
 
     for(i=0;i<M;i++){
         //行交換
@@ -86,17 +88,21 @@ int main(){
 
     //結果の出力
         //L行列
+        /*
         printf("\nL行列\n");
         for(i=0;i<M;i++){
             for(j=0;j<M;j++) printf("%10.5lf",l[i][j]);
             printf("\n");
         }
+        */
         //U行列
+        /*
         printf("\nU行列\n");
         for(i=0;i<M;i++){
             for(j=0;j<M;j++) printf("%10.5lf",u[i][j]);
             printf("\n");
         }
+        */
         //解の出力
-        for(i=0;i<M;i++) printf("x%d = %10.5lf\n",i,x[i]);
+        for(i=0;i<M;i++) printf("%10.5lf\n",x[i]);
 }
