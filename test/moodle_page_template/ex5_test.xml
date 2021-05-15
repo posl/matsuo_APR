@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+      <text>$course$/top/2020年度夏学期・月1月2・プログラミング演習Ⅰ（B）（亀井　靖高） のデフォルト/第5回演習課題　小テスト</text>
+    </category>
+    <info format="html">
+      <text></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+
+<!-- question: 9651  -->
+  <question type="coderunner">
+    <name>
+      <text>10-Equations.pdfの課題19</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;"></p><div><div>10-Equations.pdfの課題19を読んで，連立一次方程式をLU分解を用いて解くプログラムをピボッティングを行うように拡張してください．</div></div><br><p></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_program</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>0</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[#include <stdio.h>
+#include <math.h>
+#define M 4
+
+int main(){
+
+    //変数宣言
+    double a[M][M];
+    double b[M];
+    double c[M];
+    double l[M][M];
+    double u[M][M];
+    double x[M];
+    int i, j, k;
+    double d;
+
+    //入力データの受け取り
+    for(i=0;i<M;i++){
+        for(j=0;j<M;j++) scanf("%lf",&a[i][j]);
+    }
+    for(i=0;i<M;i++) scanf("%lf",&b[i]);
+
+    //L行列，U行列の初期化
+    for(i=0;i<M;i++){
+        for(j=0;j<M;j++){
+            u[i][j]=0;
+            if(i==j) l[i][j]=1;
+            else l[i][j]=0;
+        }
+    }
+
+    //入力行列の出力(ピボッティングでa行列を操作するため事前に出力)
+    /*
+    printf("入力行列\n");
+    for(i=0;i<M;i++){
+        for(j=0;j<M;j++) printf("%10.5lf",a[i][j]);
+        printf("%10.5lf\n",b[i]);
+    }
+    */
+
+    for(i=0;i<M;i++){
+        //行交換
+        for(j=i; j<M; j++){
+            if(fabs(a[i][i]) < fabs(a[j][i])){
+                for (k = 0; k < M; ++k) {
+                    d = a[i][k];
+                    a[i][k] = a[j][k];
+                    a[j][k] = d;
+                }
+                d = b[i];
+                b[i] = b[j];
+                b[j] = d;
+                for (k=0; k<i; k++){
+                    d = l[i][k];
+                    l[i][k] = l[j][k];
+                    l[j][k] = d;
+                }
+            }
+        }
+
+        //U行列の生成
+        for(j=i;j<M;j++){
+            u[i][j]=a[i][j];
+        }
+        //L行列の生成
+        for(j=i+1;j<M;j++){
+            l[j][i] = a[j][i] / u[i][i];
+        }
+
+        //新たなaの導出
+        for(j=i+1;j<M;j++){
+            for(k=i+1;k<M;k++) a[j][k]=a[j][k]-l[j][i]*u[i][k];
+        }
+    }
+
+    //c行列の生成
+    for(i=0;i<M;i++){
+        c[i] = b[i];
+        for(j=0;j<i;j++) c[i] -= l[i][j]*c[j];
+    }
+
+    //x行列の生成
+    for(i=M-1;i>=0;i--){
+        x[i] = c[i];
+        for(j=M-1;j>i;j--) x[i] -= u[i][j]*x[j];
+        x[i] /= u[i][i];
+    }
+
+    //結果の出力
+        //L行列
+        /*
+        printf("\nL行列\n");
+        for(i=0;i<M;i++){
+            for(j=0;j<M;j++) printf("%10.5lf",l[i][j]);
+            printf("\n");
+        }
+        */
+        //U行列
+        /*
+        printf("\nU行列\n");
+        for(i=0;i<M;i++){
+            for(j=0;j<M;j++) printf("%10.5lf",u[i][j]);
+            printf("\n");
+        }
+        */
+        //解の出力
+        for(i=0;i<M;i++) printf("%10.5lf\n",x[i]);
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams><![CDATA[{"linkargs":["-lm"]}]]></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <testcases>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>10-19-test1</text>
+      </testcode>
+      <stdin>
+                <text>5 4 1 0
+0 0 3 1
+3 2 1 1
+2 1 2 1
+16 2 12 9</text>
+      </stdin>
+      <expected>
+                <text>   4.00000
+  -1.00000
+  -0.00000
+   2.00000
+</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>10-19-test2</text>
+      </testcode>
+      <stdin>
+                <text>0 3 1 2
+2 3 0 1
+5 0 2 1
+1 2 3 0
+12 2 6 8</text>
+      </stdin>
+      <expected>
+                <text>  -1.02439
+  -0.24390
+   3.17073
+   4.78049</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>10-19-test3</text>
+      </testcode>
+      <stdin>
+                <text>0 3 4 1
+3 2 2 2
+5 6 2 3
+4 8 5 2
+20 19 27 14</text>
+      </stdin>
+      <expected>
+                <text>  -7.07273
+   0.54545
+  -0.40000
+  19.96364</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>10-19-test4</text>
+      </testcode>
+      <stdin>
+                <text>0 0 0 1
+0 0 1 0
+0 1 0 0
+1 0 0 0
+1 2 3 4</text>
+      </stdin>
+      <expected>
+                <text>   4.00000
+   3.00000
+   2.00000
+   1.00000</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text>10-19-test5</text>
+      </testcode>
+      <stdin>
+                <text>0 0 -3 -2
+4 0 -2 -5
+-5 2 1 -4
+1 2 1 -3
+-5 -3 -6 1</text>
+      </stdin>
+      <expected>
+                <text>   1.00000
+   1.00000
+   1.00000
+   1.00000</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+</quiz>
