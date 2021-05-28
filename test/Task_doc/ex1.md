@@ -1,6 +1,6 @@
 # 第1回課題
 
-## 課題1
+## 課題1(02-Variable.pdfの課題2)
 02-Variable.pdfのスライド19ページのプログラムを正しく動作するように書き換えてください．
 
 ### 入力
@@ -42,7 +42,7 @@ int main()
 ---
 <div style="page-break-before:always"></div>
 
-## 課題2
+## 課題2(03-Function_If.pdfの課題4)
 03-Function_If.pdfのスライド37ページを参考に，摂氏と華氏を変換するプログラムを作成してください．
 摂氏と華氏の変換は次の式で行われます．
 
@@ -101,7 +101,7 @@ C：摂氏の温度
 
 <div style="page-break-before:always"></div>
 
-## 課題3
+## 課題3(03-Function_If.pdfの課題6)
 03-Function_If.pdfのスライド40ページを参考に2次方程式の解を求めるプログラムを作成しなさい．
 
 ### 入力
