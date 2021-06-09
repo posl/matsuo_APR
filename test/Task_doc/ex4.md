@@ -93,21 +93,17 @@
 <div style="page-break-before:always"></div>
 
 ### コピペ用プログラム
-スライド37ページのプログラムをコピーできるようにしたものです．
-課題に合わせて，不要な出力を削っています．
+今回の課題用に入出力処理の一部を記述したサンプルです．
 
 ```main.c
 #include <stdio.h>
 #include <math.h>
-
-/* f(x)の出力は不要です */
 
 /*f(x)*/
 double f(double x)
 {
     return /* f(x) */;
 }
-
 /*f(x)の導関数*/
 double g(double x)
 {
@@ -118,30 +114,27 @@ int main()
 {
     double x, new_x, eps;
     int number,i;
+    double a,b,c;
 
-    /*データの取り込み(print文は課題の出力の関係で削除してます) */
+    //2次方程式の係数の取り込み
+    scanf("%lf",&a);
+    scanf("%lf",&b);
+    scanf("%lf",&c);
 
-    scanf(/* 初期値xの値の型は? */,&x);
-    scanf(/* 計算精度の値の型は? */,&eps);
-    scanf(/* 繰り返し回数の型は? */,&number);
-    
+    /*データの取り込み(スライドにあったprint文はコメントアウトにしてます) */
+    scanf("%lf",&x);
+    scanf("%lf",&eps);
+    scanf("%d",&number);
+    //printf("繰り返し\tnew x\t\tf(x)\t\tg(x)\n");
+
     /* ニュートン法による解の導出 */
-    for(/* forの繰り返し条件は? */){
-        new_x = /* 適切な計算式は？ */;
 
-        if(/* 計算精度の判定の条件式は? */){
-            printf("%f\n", new_x);
-            break;
-        }
-
-         /* 収束条件、重解の判定をし、重解を出力 */
-        if(/* 重解の時の計算精度の判定の条件式は? */){
-            printf("%f(重解)\n", new_x);
-            break;
-        }
-        x = new_x;
-    }
-    if(i == number) printf("繰り返し上限\n");
+    //重解でない場合の出力
+    printf("%f\n", new_x);
+    //重解の場合の出力
+    printf("%f(重解)\n", new_x);
+    //繰り返し上限に達した場合の出力
+    printf("繰り返し上限\n");
 }
 ```
 ---
@@ -188,8 +181,7 @@ int main()
 <div style="page-break-before:always"></div>
 
 ### コピペ用プログラム
-スライド5ページのプログラムをコピーできるようにしたものです．
-課題に合わせて，不要な出力を削っています．
+今回の課題用に入出力処理の一部を記述したサンプルです．
 
 ```main.c
 #include<stdio.h>
@@ -211,12 +203,9 @@ int main()
     //分割数
     scanf("%d", &n);
 
-    // 台形の面積の計算
-    h = (b-a)/n;
-    for (i=0; i<n; i++) {	
-        x = a + i*h;
-        sum = sum + h*f(x);/* ここは台形則に書き換える必要がある */
-    }
+    /* 積分値(sum)を計算 */
+
+    //積分値の出力
     printf("%f\n",sum);
 }
 ```

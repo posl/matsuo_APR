@@ -2,6 +2,7 @@ import json
 import os
 import csv
 import argparse
+from posixpath import join
 
 #時間表示をpythonのtimeのフォーマットに置換する関数
 def change_time_string(time):
@@ -31,16 +32,17 @@ with open( in_dir ) as f:
     while line:
         json_data.append( decoder.raw_decode( line )[ 0 ] )
         line = f.readline()
-
 #データの抽出
 src = {}
 comp = {}
 for data in json_data:
     try:
         if data[ "kind" ] == 'save':
+            print(data)
             src[ data[ "save" ][ "id" ] ] = [ change_time_string(data[ "time" ]), data[ "session" ][ "user_id" ],data['session']['user_name_full'], data[ "save" ][ "code" ] ]
         elif data[ "kind" ] == 'compile':
             comp[ data[ "compile" ][ "save_id" ] ] = [ data[ "compile" ][ "commandline" ], data[ "compile" ][ "stderr" ] ]
+            # 必要であればstderrは文字列errorを含まない場合からにするように処理しても良い
     except KeyError:
         print("KeyError: " + str(data))
 data_list=[['id','time','user_id','user_name_full','code','commandline','stderr']]
@@ -90,6 +92,15 @@ for key in user_data_box:
         writer = csv.writer(f)
         writer.writerow(['id','time','user_id','user_name_full','code','commandline','stderr'])
         writer.writerows(user_data_box[key])
+    for line in user_data_box[key]:
+        id = str(line[0])
+        codepath=os.path.join(path,id)
+        try:
+            os.mkdir(codepath)
+        except:
+            pass
+        with open(codepath +'/'+ id + '.c','w',encoding='utf-8') as f1:
+            f1.write(line[4])
 '''
 for i in range(10):
     print(json_data[i])
