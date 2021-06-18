@@ -23,6 +23,7 @@ try:
 except FileExistsError:
     print('./data already exists')
 
+
 #jsonのデコード
 #辞書リストに変換
 #形式{id:,kind:,time:,window_id:,}
@@ -32,20 +33,22 @@ with open( in_dir ) as f:
     while line:
         json_data.append( decoder.raw_decode( line )[ 0 ] )
         line = f.readline()
+
+k=0
 #データの抽出
 src = {}
 comp = {}
 for data in json_data:
     try:
         if data[ "kind" ] == 'save':
-            print(data)
-            src[ data[ "save" ][ "id" ] ] = [ change_time_string(data[ "time" ]), data[ "session" ][ "user_id" ],data['session']['user_name_full'], data[ "save" ][ "code" ] ]
+            src[ data[ "save" ][ "id" ] ] = [ change_time_string(data[ "time" ]), data[ "session" ][ "user_id" ],data['session']['user_name_full'], data[ "save" ][ "code" ] ,data["window_id"]]
+
         elif data[ "kind" ] == 'compile':
             comp[ data[ "compile" ][ "save_id" ] ] = [ data[ "compile" ][ "commandline" ], data[ "compile" ][ "stderr" ] ]
             # 必要であればstderrは文字列errorを含まない場合からにするように処理しても良い
     except KeyError:
         print("KeyError: " + str(data))
-data_list=[['id','time','user_id','user_name_full','code','commandline','stderr']]
+data_list=[['id','time','user_id','user_name_full','code','window_id','commandline','stderr']]
 dataset={}#srcとcompを結合
 for key in comp:
     if src[key]:
@@ -90,7 +93,7 @@ for key in user_data_box:
     path = os.path.join('data','user_data',str(key))
     with open(path + '/' + str(key)+'.csv','w',encoding='utf-8') as f:
         writer = csv.writer(f)
-        writer.writerow(['id','time','user_id','user_name_full','code','commandline','stderr'])
+        writer.writerow(['id','time','user_id','user_name_full','code','window_id','commandline','stderr'])
         writer.writerows(user_data_box[key])
     for line in user_data_box[key]:
         id = str(line[0])
