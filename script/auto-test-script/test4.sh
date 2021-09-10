@@ -1,5 +1,5 @@
 #!/bin/sh
-gcc main.c -o test4
+gcc $1 -o test4
 
 function func(){
 input=$(<data4/input.txt)
@@ -9,16 +9,14 @@ EOF
 }
 
 result=`func`
-echo $result>./data4/result1.txt
-cat ./data4/result1.txt | tr ' ' '\n'>data4/result.txt
-rm data4/result1.txt
-check=`diff ./data4/output.txt ./data4/result.txt`
+echo $result>./data4/result.txt
+check=`python check.py -d data4`
 
-if test $check -z
+if test $check = '0'
 then
-    echo "test4 success"
+    echo "T"
     exit 0
 else
-    echo 'test4 failed'
+    echo 'F'
     exit 1
 fi

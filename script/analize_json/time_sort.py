@@ -1,16 +1,18 @@
 from datetime import datetime as dt
 import csv
 import argparse
-import operator
+import os
 
 parser = argparse.ArgumentParser(description='sorted by timezone for data')
-parser.add_argument('-i', '--input', default='./data/dataset.csv', type=str)
-parser.add_argument('-o', '--output', default='./data/dataset_sorted.csv', type=str)
+parser.add_argument('-d','--directory',default='data')
+parser.add_argument('-i', '--input', default='dataset.csv', type=str)
+parser.add_argument('-o', '--output', default='dataset_sorted.csv', type=str)
 
 args = parser.parse_args()
-in_file = args.input
-out_file = args.output
+dir = args.directory
 
+in_file = os.path.join(dir,args.input)
+out_file = os.path.join(dir,args.output)
 f=open(in_file)
 infile = csv.reader(f)
 header=next(infile)

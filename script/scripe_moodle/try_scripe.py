@@ -31,15 +31,18 @@ time.sleep(1)
 enem_num=len(element_list)
 #enem_num=1
 
-
+'''
 for i in range(enem_num):
     MS.get_data(i)
     result = MS.data[i]
     
     time.sleep(1)
+'''
 
+MS.get_data(5)
+result = MS.data[5]
 
-with open("data.json",'w') as f:
+with open("data5.json",'w') as f:
     json.dump(MS.data,f,default=json_serial)
 
 

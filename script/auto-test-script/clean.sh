@@ -6,3 +6,6 @@ rm test$i
 rm data$i/result.txt
 done
 rm ./a.out
+
+rm error.txt
+rm testlog.csv

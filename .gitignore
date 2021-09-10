@@ -2,3 +2,8 @@ reference_paper
 data
 *data*
 .login
+__pycache__
+keyword.csv
+program
+*.html
+path_to_chrome_profile

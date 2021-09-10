@@ -1,8 +1,8 @@
 import json
 import os
 import argparse
-import csv
 import uuid
+import sqlite3
 
 decoder = json.JSONDecoder()
 
@@ -17,20 +17,30 @@ parser.add_argument('-i', '--input', default='./data.json', type=str)
 args = parser.parse_args()
 indata = args.input
 
-json_data = []
+json_data = {}
 with open( indata ) as f:
     line = f.readline()
+    json_data.update( decoder.raw_decode( line )[ 0 ] )
+    print(decoder.raw_decode( line )[ 0 ].keys())
     while line:
-        json_data.append( decoder.raw_decode( line )[ 0 ] )
+        json_data.update( decoder.raw_decode( line )[ 0 ] )
         line = f.readline()
 
-data = json_data[0]
+data = json_data
+
+dbname='./data/'+str(indata)+'.db'
+conn = sqlite3.connect(dbname)
+cur = conn.cursor()
+query='CREATE TABLE TestData(lectid STRING,time DATETIME,user_mail STRING,user_name_full STRING,code STRING)'
+insert_data = []
+try:
+    cur.execute(query)
+    cur.commit()
+except:
+    print(str(dbname)+' alreay exists.')
+
 
 for i in range(6):
-    try:
-        os.mkdir('./data/lect%d'%i)
-    except FileExistsError:
-        print(('./data/lect%d already exists')%i)
     
     '''
     a = [str(j) for j in data['%d'%i]]
@@ -39,36 +49,30 @@ for i in range(6):
         f.write(a)
     '''
 
-    file = open("./data/lect%d/"%i+"lect%d.csv"%i,"w",encoding="utf-8")
-    csvfile = csv.writer(file)
-    header = ['name','mail','start','finish','log_id']
-    csvfile.writerow(header)
-    for line in data['%d'%i]:
-        log_id = uuid.uuid4()
-        line_list = [line['name'],line['mail'],line['start'],line['finish'],log_id]
-        csvfile.writerow(line_list)
+    code_id = ""
+    lect_id = ""
+    time = ""
+    user_mail= ""
+    user_name = ""
+    code = ""
 
-        try:
-            os.mkdir('./data/lect%d'%i+"/%s"%log_id)
-        except FileExistsError:
-            print(('./data/lect%d'%i+'/%s already exists')%log_id)
+    for line in data['%s'%i]:
+        print(line['name'])
+        code_id = uuid.uuid4()
+        user_name = line['name']
+        user_mail = line['mail']
         for k in range(1,4):
             if 'ex%d'%k not in line['log'].keys():
                 break
-            try:
-                os.mkdir('./data/lect%d'%i+"/%s"%log_id)
-            except FileExistsError:
-                pass
-            with open("./data/lect%d"%i+"/%s"%log_id+'/ex%d'%k+"code.csv","w",encoding="utf-8") as f:
-                csvfile2 = csv.writer(f)
-                header = ['step','time','code']
-                csvfile2.writerow(header)
-                m=1
-                for row in line['log']['ex%d'%k]:
-                    time = row[0]['time']
-                    code = row[1]['code']
-                    csvfile2.writerow([str(m),time,code])
-                    m+=1
-                m=1
+            lect_id = 'lect%d'%(i+1)+'-'+'%d'%k 
+            for row in line['log']['ex%d'%k]:
+                time = row[0]['time']
+                time = str(21)+time[2:]
+                code = row[1]['code']
+                insert_data.append(tuple([lect_id,time,user_mail,user_name,code]))
 
-    file.close()
+#print(insert_data)
+query = 'INSERT INTO TestData values(?,?,?,?,?)'
+cur.executemany(query,insert_data)
+conn.commit()
+conn.close()
